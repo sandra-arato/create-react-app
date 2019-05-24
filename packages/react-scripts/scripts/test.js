@@ -54,15 +54,16 @@ function isInMercurialRepository() {
   }
 }
 
-// Watch unless on CI or explicitly running all tests
-if (
-  !process.env.CI &&
-  argv.indexOf('--watchAll') === -1
-) {
-  // https://github.com/facebook/create-react-app/issues/5210
-  const hasSourceControl = isInGitRepository() || isInMercurialRepository();
-  argv.push(hasSourceControl ? '--watch' : '--watchAll');
-}
+// Watch unless on CI or explicitly running all tests - NOT ON WINDOWS VM :(
+// ok so on VMWare we can't watch, so we'll skip this bit.
+// if (
+//   !process.env.CI &&
+//   argv.indexOf('--watchAll') === -1
+// ) {
+//   // https://github.com/facebook/create-react-app/issues/5210
+//   const hasSourceControl = isInGitRepository() || isInMercurialRepository();
+//   argv.push(hasSourceControl ? '--watch' : '--watchAll');
+// }
 
 // @remove-on-eject-begin
 // This is not necessary after eject because we embed config into package.json.
